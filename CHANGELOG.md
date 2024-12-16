@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.33.1] - 2024/12/16
+### Add
+- Introduced userId attribute
+
+## [0.33.0] - 2024/05/30
+### Feat
+- feat(build): update build scripts and deps
+
 ## [0.32.4] - 2024/05/08
 ### Fix
 - Fix `isAd` attribute value in `sendError`.
