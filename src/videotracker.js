@@ -48,6 +48,7 @@ class VideoTracker extends Tracker {
     if (player) this.setPlayer(player, options.tag)
 
     Log.notice('Tracker ' + this.getTrackerName() + ' v' + this.getTrackerVersion() + ' is ready.')
+    this.userId = null;
   }
 
   /**
@@ -61,6 +62,11 @@ class VideoTracker extends Tracker {
    * @param {Tracker} [options.adsTracker] Set ads tracker. See {@link adsTracker}.
    * @param {Object} [options.tag] DOM element to track. See {@link setPlayer}.
    */
+
+  setUserId(userId) {
+    this.userId = userId;
+  }
+
   setOptions (options) {
     if (options) {
       if (options.adsTracker) this.setAdsTracker(options.adsTracker)
@@ -416,6 +422,7 @@ class VideoTracker extends Tracker {
     } catch (err) { /* skip */ }
 
     if (this.isAd()) { // Ads
+      att.userId = this.userId;
       att.adId = this.getVideoId()
       att.adTitle = this.getTitle()
       att.adBitrate = this.getBitrate() || this.getWebkitBitrate()
@@ -436,6 +443,7 @@ class VideoTracker extends Tracker {
       att.adCreativeId = this.getAdCreativeId()
       att.adPartner = this.getAdPartner()
     } else { // no ads
+      att.userId = this.userId;
       att.contentId = this.getVideoId()
       att.contentTitle = this.getTitle()
       att.contentIsLive = this.isLive()
