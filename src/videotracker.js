@@ -422,7 +422,7 @@ class VideoTracker extends Tracker {
     } catch (err) { /* skip */ }
 
     if (this.isAd()) { // Ads
-      att.userId = this.userId;
+      att['enduser.id'] = this.userId;
       att.adId = this.getVideoId()
       att.adTitle = this.getTitle()
       att.adBitrate = this.getBitrate() || this.getWebkitBitrate()
@@ -443,7 +443,7 @@ class VideoTracker extends Tracker {
       att.adCreativeId = this.getAdCreativeId()
       att.adPartner = this.getAdPartner()
     } else { // no ads
-      att.userId = this.userId;
+      att['enduser.id'] = this.userId;
       att.contentId = this.getVideoId()
       att.contentTitle = this.getTitle()
       att.contentIsLive = this.isLive()
