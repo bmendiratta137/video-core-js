@@ -48,7 +48,7 @@ class VideoTracker extends Tracker {
     if (player) this.setPlayer(player, options.tag)
 
     Log.notice('Tracker ' + this.getTrackerName() + ' v' + this.getTrackerVersion() + ' is ready.')
-    this.userId = null;
+    this._userId = null;
   }
 
   /**
@@ -64,7 +64,7 @@ class VideoTracker extends Tracker {
    */
 
   setUserId(userId) {
-    this.userId = userId;
+    this._userId = userId;
   }
 
   setOptions (options) {
@@ -422,7 +422,7 @@ class VideoTracker extends Tracker {
     } catch (err) { /* skip */ }
 
     if (this.isAd()) { // Ads
-      att['enduser.id'] = this.userId;
+      att['enduser.id'] = this._userId;
       att.adId = this.getVideoId()
       att.adTitle = this.getTitle()
       att.adBitrate = this.getBitrate() || this.getWebkitBitrate()
@@ -443,7 +443,7 @@ class VideoTracker extends Tracker {
       att.adCreativeId = this.getAdCreativeId()
       att.adPartner = this.getAdPartner()
     } else { // no ads
-      att['enduser.id'] = this.userId;
+      att['enduser.id'] = this._userId;
       att.contentId = this.getVideoId()
       att.contentTitle = this.getTitle()
       att.contentIsLive = this.isLive()
